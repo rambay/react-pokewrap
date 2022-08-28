@@ -1,14 +1,18 @@
-const API = 'https://randomuser.me/api/';
+const API = process.env.API;
 
-const getData = async (id) => {
-  const apiURl = id ? `${API}${id}` : API;
+const numRandom = () => {
+  return Math.floor(Math.random() * (10 - 1 + 1) + 1);
+};
+
+const getData = async () => {
+  const id = numRandom();
   try {
-    const response = await fetch(apiURl);
+    const response = await fetch(`${API}${id}`);
     const data = await response.json();
-    return data.results[0];
+    return data;
   } catch (error) {
-    console.log('Fetch Error', error);
-  };
+    console.log("Fetch Error", error);
+  }
 };
 
 export default getData;
