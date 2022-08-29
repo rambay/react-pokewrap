@@ -1,5 +1,4 @@
 import getData from "@utils/getData.js";
-import Logo from "@assets/logo.svg";
 
 const Template = async () => {
   const data = await getData();

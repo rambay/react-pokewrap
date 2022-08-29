@@ -12,9 +12,8 @@ module.exports = {
     assetModuleFilename: "assets/images/[hash][ext][query]",
   },
   mode: "development",
-  watch: true,
   resolve: {
-    extensions: [".js"],
+    extensions: [".js", ".jsx"],
     alias: {
       "@utils": path.resolve(__dirname, "src/utils/"),
       "@assets": path.resolve(__dirname, "src/assets/images/"),
@@ -25,15 +24,23 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.m?js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
         },
       },
       {
-        test: /\.css|.scss$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+        test: /\.css|.styl$/i,
+        use: [MiniCssExtractPlugin.loader, "css-loader", "stylus-loader"],
+      },
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: "html-loader",
+          },
+        ],
       },
       {
         test: /\.(png|jpe?g|gif|svg)$/,
@@ -60,4 +67,15 @@ module.exports = {
     }),
     new Dotenv(),
   ],
+  devServer: {
+    static: {
+      directory: path.join(__dirname, "dist"),
+      watch: true,
+    },
+    watchFiles: path.join(__dirname, "./**"),
+    compress: true,
+    historyApiFallback: true,
+    port: 9000,
+    open: true,
+  },
 };

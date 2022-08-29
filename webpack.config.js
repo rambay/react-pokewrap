@@ -15,7 +15,7 @@ module.exports = {
     clean: true,
   },
   resolve: {
-    extensions: [".js"],
+    extensions: [".js", ".jsx"],
     alias: {
       "@utils": path.resolve(__dirname, "src/utils/"),
       "@assets": path.resolve(__dirname, "src/assets/images/"),
@@ -26,15 +26,15 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.m?js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
         },
       },
       {
-        test: /\.css|.scss$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+        test: /\.css|.styl$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader", "stylus-loader"],
       },
       {
         test: /\.(png|jpe?g|gif|svg)$/,
