@@ -11,16 +11,17 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "js/[name].[contenthash].js",
+    publicPath: "/",
     assetModuleFilename: "assets/images/[hash][ext][query]",
     clean: true,
   },
+  mode: "production",
   resolve: {
     extensions: [".js", ".jsx"],
     alias: {
-      "@utils": path.resolve(__dirname, "src/utils/"),
       "@assets": path.resolve(__dirname, "src/assets/images/"),
-      "@templates": path.resolve(__dirname, "src/templates/"),
       "@styles": path.resolve(__dirname, "src/styles/"),
+      "@components": path.resolve(__dirname, "src/components/"),
     },
   },
   module: {

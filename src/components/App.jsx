@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Loader from "./Loader.jsx";
+import Loader from "@components/Loader.jsx";
 import Logo from "@assets/logo.svg";
 
 function App() {
